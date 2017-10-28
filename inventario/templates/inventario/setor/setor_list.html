@@ -35,21 +35,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for setor in setor_list%}
-                                    <tr>
-                                        <td><a href="{% url 'inventario:setor_edit' setor.id %}">{{ setor.nome }}</a></td>
-                                        <td>{{ setor.cidade }}</td>>
-                                        <td style="width: 150px">
-                                          <button type="button" class="btn btn-danger btn-sm js-delete-book" data-url="{% url 'inventario:setor_delete' setor.id %}">
-                                            <span class="glyphicon glyphicon-trash"></span> Delete</button>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
+                                {% include 'inventario/setor/includes/partial_list.html' %}
                             </tbody>
                         </table>
                         <!-- warning -->
                         <div class="message-box message-box-warning animated fadeIn" id="message-box-warning">
                             <div class="mb-container">
+
                             </div>
                         </div>
                     </div>

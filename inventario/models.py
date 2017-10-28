@@ -8,7 +8,7 @@ class Setor(models.Model):
     cidade = models.CharField(max_length=30)
 
     def __str__(self):
-        return self.nome
+        return self.nome + " - " + self.cidade
 
 
 class Colaborador(User):

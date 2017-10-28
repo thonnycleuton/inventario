@@ -1,0 +1,29 @@
+{% load thumbnail %}
+{% for perfil in perfil_list %}
+    <tr>
+        <td>
+            <img src="/media/{{ perfil.foto }}" height="50" width="50" alt="" />
+        </td>
+
+        <td><a href="{% url 'contas:alterar' perfil.id %}">{{ perfil.username }}</a></td>
+        <td>{{ perfil.email }}</td>
+        <td>{{ perfil.get_funcao_display }}</td>
+        {% if user.is_superuser %}
+            <td>
+                <a onclick="return confirm('Deseja realmente alterar esse status?')" href="{% url 'contas:alterar_status' perfil.id %}">
+                <span {% if perfil.is_active %}class="fa fa-check" aria-hidden="true"
+                      {% else %} class="fa fa-times" aria-hidden="true"
+                      {% endif %}>
+                </span></a>
+            </td>
+            <td style="width: 150px">
+              <button type="button" class="btn btn-danger btn-sm js-delete-book" data-url="{% url 'contas:delete' perfil.id %}">
+                <span class="glyphicon glyphicon-trash"></span> Delete</button>
+            </td>
+        {% endif %}
+    </tr>
+{% empty %}
+  <tr>
+    <td colspan="8" class="text-center bg-warning">Nenhum usuário cadastrado</td>
+  </tr>
+{% endfor %}

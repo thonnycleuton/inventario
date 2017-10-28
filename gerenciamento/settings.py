@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'easy_thumbnails',
+    'widget_tweaks',
     'inventario.apps.InventarioConfig',
 ]
 
