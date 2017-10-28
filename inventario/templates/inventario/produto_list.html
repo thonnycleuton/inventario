@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block javascript %}
+    <script type="text/javascript" src="{% static 'js/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'js/plugins/pessoais/alerts.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <!-- PAGE CONTENT WRAPPER -->
+    <div class="page-content-wrap">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- START DEFAULT DATATABLE -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Produtos</h3>
+                        <ul class="panel-controls">
+                            <li><a href="{% url 'inventario:produto_add' %}"><span class="fa fa-plus"></span></a></li>
+                            <!--<li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
+                            <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
+                            <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
+                            -->
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table datatable" id="tabela">
+                            <thead>
+                                <tr>
+                                    <th>Patrimonio</th>
+                                    <th>Equipamento</th>
+                                    <th>Colaborador</th>
+                                    <th>Setor</th>
+                                    <th>Nota Fiscal</th>
+                                    <th>Apagar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for produto in produto_list %}
+                                    <tr>
+                                        <td><a href="{% url 'inventario:produto_edit' produto.id %}">{{ produto.patrimonio}}</a></td>
+                                        <td>{{ produto.nome }}</td>>
+                                        <td>{{ produto.colaborador }}</td>>
+                                        <td>{{ produto.colaborador.setor }}</td>>
+                                        <td>{{ produto.nota_fiscal }}</td>>
+                                        <td style="width: 150px">
+                                          <button type="button" class="btn btn-danger btn-sm js-delete-book" data-url="{% url 'inventario:produto_delete' produto.id %}">
+                                            <span class="glyphicon glyphicon-trash"></span> Delete</button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <!-- warning -->
+                        <div class="message-box message-box-warning animated fadeIn" id="message-box-warning">
+                            <div class="mb-container">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END DEFAULT DATATABLE -->
+            </div>
+        </div>
+
+    </div>
+    <!-- PAGE CONTENT WRAPPER -->
+{% endblock %}
