@@ -1,6 +1,6 @@
 from django import forms
 
-from inventario.models import Colaborador, Produto
+from inventario.models import Colaborador, Produto, Setor
 
 
 class ProfileForm(forms.ModelForm):
@@ -30,4 +30,16 @@ class ProdutoForm(forms.ModelForm):
             'patrimonio': forms.TextInput(attrs={'class': 'form-control'}),
             'nota_fiscal': forms.TextInput(attrs={'class': 'form-control'}),
             'colaborador': forms.Select(attrs={'class': 'form-control'}),
+        }
+
+
+class SetorForm(forms.ModelForm):
+
+    class Meta:
+        model = Setor
+        fields = '__all__'
+        widgets = {
+            'nome': forms.TextInput(attrs={'class': 'form-control'}),
+            'cidade': forms.TextInput(attrs={'class': 'form-control'}),
+
         }

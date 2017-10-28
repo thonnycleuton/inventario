@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-from inventario.form import ProfileForm, ProdutoForm
+from inventario.form import ProfileForm, ProdutoForm, SetorForm
 from inventario.models import Produto, Setor, Colaborador
 
 
@@ -67,7 +67,6 @@ class DeleteColaborador(DeleteView):
     success_url = reverse_lazy('inventario:colaborador_list')
 
 
-
 # Comeca classes de view para Setores
 class ListSetor(ListView):
     model = Setor
@@ -76,7 +75,7 @@ class ListSetor(ListView):
 class CreateSetor(CreateView):
     model = Setor
     success_url = reverse_lazy('inventario:setor_list')
-    fields = '__all__'
+    form_class = SetorForm
 
     def form_valid(self, form):
         form.save()
@@ -86,7 +85,7 @@ class CreateSetor(CreateView):
 class UpdateSetor(UpdateView):
     model = Produto
     success_url = reverse_lazy('inventario:setor_list')
-    fields = '__all__'
+    form_class = SetorForm
 
     def form_valid(self, form):
         form.save()
